@@ -11,29 +11,28 @@ class Student:
     def showStudents(self):
         print(f"Kod: {self.kod} , Ad: {self.ad}, Soyad: {self.soyad} , Email: {self.email}, Number: {self.number}")
 
-
-
-
 def addNewStudent():
     userInput1 = int(input("Add new student's ID: "))
     userInput2 = input("Add new student's name: ")
     userInput3 = input("Add new student's surname: ")
     userInput4 = input("Add new student's email address: ")
-    userInput5 = int(input("Add new student's phone number: "))
-
-    newStudent = Student(userInput1, userInput2, userInput3, userInput4, userInput5)
-
-    studentList.append(newStudent)
-
-
+    userInput5 = input("Add new student's phone number: ")
+    if userInput1 < 1000 and userInput1 > 99:
+        if userInput4.__contains__("@"):
+            if str(userInput5[0:4])==str("+994"):
+                newStudent = Student(userInput1, userInput2, userInput3, userInput4, userInput5)
+                studentList.append(newStudent)
+            else:
+                print("Unavailable number added, please try again")
+        else:
+            print("Unavailable email adress added, please try again")
+    print("Student ID number should be between 100 and 1000, please try again")
 
 def deleteByStudentCode():
     userInput = int(input("Add Student's ID which you want to delete: "))
     for studInfo in studentList:
         if studInfo.kod == userInput:
             studentList.remove(studInfo)
-
-
 
 def editByStudentCode():
     userInput = int(input("Add Student's ID which you want to edit: "))
@@ -45,9 +44,6 @@ def editByStudentCode():
             studInfo.email = int(input("New Email:"))
             studInfo.number = int(input("New Phone Number:"))
 
-
-
-
 def showStudentInfoByName():
     userInput = input("Add Student's name you want to search:")
 
@@ -58,12 +54,9 @@ def showStudentInfoByName():
         else:
             print("There is not such a student")
 
-
-
 def showAllStudents():
     for students in studentList:
         students.showStudents()
-
 
 x = 15
 while x > 0:
@@ -76,8 +69,7 @@ while x > 0:
     userInput = int(input("Choose the number: "))
 
     if userInput == 1:
-        for x in range(2):
-            addNewStudent()
+        addNewStudent()
     elif userInput == 2:
         deleteByStudentCode()
     elif userInput == 3:
@@ -88,5 +80,3 @@ while x > 0:
         showAllStudents()
     else:
         print("Error Typo")
-
-
